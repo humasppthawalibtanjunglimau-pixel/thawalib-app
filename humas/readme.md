@@ -1,1 +1,243 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Humas – Publikasi & Berita Pondok | Thawalib Tanjung Limau</title>
+
+<style>
+  :root {
+    --bg1: #063227;
+    --bg2: #0c5f4b;
+    --gold: #f7c978;
+    --card: rgba(255,255,255,0.05);
+    --glass: rgba(255,255,255,0.03);
+    --text: rgba(255,255,255,0.9);
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(160deg, var(--bg1) 0%, var(--bg2) 70%);
+    color: var(--text);
+    padding: 24px;
+  }
+
+  .container {
+    max-width: 1150px;
+    margin: auto;
+    padding: 20px;
+    background: var(--glass);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 14px 40px rgba(0,0,0,0.4);
+  }
+
+  /* Header */
+  header {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .logo {
+    width: 85px;
+    height: 85px;
+    padding: 6px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 12px;
+    object-fit: contain;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  h1 {
+    margin: 0;
+    color: var(--gold);
+    font-size: 24px;
+  }
+  p.lead {
+    margin: 3px 0 0 0;
+    font-size: 14px;
+  }
+
+  /* Featured news */
+  .featured {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    padding: 18px;
+    background: var(--card);
+    border-radius: var(--radius);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .featured img {
+    width: 280px;
+    border-radius: 14px;
+    object-fit: cover;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .featured h2 {
+    margin: 0;
+    color: var(--gold);
+  }
+  .featured p {
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+
+  /* Grid */
+  .grid {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 18px;
+  }
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: 1fr; }
+    .featured { flex-direction: column; }
+    .featured img { width: 100%; height: 200px; }
+  }
+
+  /* News cards */
+  .news-card {
+    background: var(--card);
+    padding: 14px;
+    border-radius: var(--radius);
+    margin-bottom: 14px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .news-card h3 {
+    margin: 0;
+    color: var(--gold);
+  }
+  .news-card small {
+    opacity: 0.7;
+  }
+
+  /* Sidebar */
+  .sidebar .card {
+    background: var(--card);
+    padding: 14px;
+    border-radius: var(--radius);
+    margin-bottom: 14px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .card h3 {
+    margin-top: 0;
+    color: var(--gold);
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-block;
+    padding: 9px 14px;
+    background: var(--gold);
+    color: #063227;
+    border-radius: 10px;
+    font-weight: 700;
+    text-decoration: none;
+    margin-top: 12px;
+  }
+  .btn.secondary {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--text);
+  }
+
+  /* Back */
+  .back {
+    margin-top: 22px;
+    display: inline-block;
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 700;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <header>
+    <img src="../img/logo-thawalib.png" class="logo" alt="Logo Thawalib">
+    <div>
+      <h1>Publikasi & Berita Pondok</h1>
+      <p class="lead">Informasi resmi, publikasi kegiatan, dan update terbaru dari Pondok Pesantren Thawalib Tanjung Limau</p>
+    </div>
+    <img src="../img/logo-kaligrafi.png" class="logo" alt="Logo Kaligrafi">
+  </header>
+
+  <!-- Featured News -->
+  <section class="featured">
+    <img src="https://picsum.photos/600/400?random=2" alt="Berita Terbaru">
+    <div>
+      <h2>Ujian Akhir Semester Ganjil 2025–2026 Dimulai</h2>
+      <p>
+        Pada hari Senin, UAS Ganjil resmi dibuka oleh Pimpinan Pondok Pesantren Thawalib Tanjung Limau.
+        Seluruh santri mengikuti pengarahan tata tertib, pembagian kelas, dan berjalan dengan tertib.
+      </p>
+      <a href="#" class="btn">Baca Selengkapnya</a>
+    </div>
+  </section>
+
+  <div class="grid">
+    <!-- Main news -->
+    <main>
+
+      <div class="news-card">
+        <h3>Peringatan Hari Guru Nasional</h3>
+        <small>25 November 2025</small>
+        <p>Pondok Pesantren Thawalib Tanjung Limau mengadakan upacara sederhana dan penampilan apresiasi santri untuk guru.</p>
+      </div>
+
+      <div class="news-card">
+        <h3>Santri Mengikuti Praktek Ibadah Haji di Padang</h3>
+        <small>18 November 2025</small>
+        <p>Santri belajar langsung manasik dan rangkaian ibadah haji di miniatur Ka'bah Padang.</p>
+      </div>
+
+      <div class="news-card">
+        <h3>Kegiatan Ibadah Malam Asrama</h3>
+        <small>5 November 2025</small>
+        <p>Kegiatan rutin ibadah malam dilaksanakan dengan penuh khusyuk di seluruh asrama.</p>
+      </div>
+
+    </main>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+      <div class="card">
+        <h3>Publikasi Resmi</h3>
+        <ul>
+          <li><a href="../data/readme.md" style="color:var(--gold)">Surat Edaran Pondok</a></li>
+          <li><a href="../pages/readme.md" style="color:var(--gold)">Artikel & Informasi</a></li>
+          <li><a href="../ppdb/index.html" style="color:var(--gold)">PPDB 2026–2027</a></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Kontak Humas</h3>
+        <p>WhatsApp: <a href="https://wa.me/085274042328" style="color:var(--gold)">0852-7404-2328</a></p>
+        <p>Email: humas@thawalib.ac.id</p>
+        <a class="btn secondary" href="https://www.instagram.com/kabathawalibtanjunglimau">Instagram</a>
+      </div>
+
+      <div class="card">
+        <h3>Galeri Kegiatan</h3>
+        <p>Lihat dokumentasi lengkap kegiatan pondok.</p>
+        <a class="btn" href="../galeri/readme.md">Lihat Galeri</a>
+      </div>
+
+    </aside>
+  </div>
+
+  <a class="back" href="../index.html">← Kembali ke Beranda</a>
+
+</div>
+
+</body>
+</html>
 
