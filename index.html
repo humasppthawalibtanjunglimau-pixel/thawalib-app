@@ -1,46 +1,238 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pondok Pesantren Thawalib Tanjung Limau</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pondok Pesantren Thawalib Tanjung Limau</title>
+  <meta name="description" content="Aplikasi web Thawalib — Beranda">
+  <style>
+    /* ---------- Colors & Theme (Islami) ---------- */
+    :root{
+      --bg-1:#0b3b2e; /* dark teal */
+      --bg-2:#145c4b; /* teal */
+      --accent:#d6a34a; /* gold */
+      --muted:#e9f5ef; /* light */
+      --card:#ffffff11; /* translucent */
+      --glass:#ffffff08;
+      --glass-2:#ffffff12;
+      --shadow: 0 8px 20px rgba(2,10,8,0.45);
+      --glass-border: rgba(255,255,255,0.06);
+      --radius:16px;
+    }
+
+    /* ---------- Base ---------- */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color:var(--muted);
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,0.02), transparent), linear-gradient(180deg,var(--bg-1),var(--bg-2));
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:28px;
+      display:flex;align-items:flex-start;justify-content:center;
+    }
+
+    /* Islamic geometric pattern (subtle) */
+    .pattern{
+      position:fixed;inset:0;pointer-events:none;mix-blend-mode:overlay;opacity:0.12;background-image:radial-gradient(circle at 20% 20%, rgba(255,255,255,0.02), transparent 6%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.01) 0 2px, transparent 2px 8px),
+        linear-gradient(90deg, rgba(255,255,255,0.01), transparent);
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.1));
+    }
+
+    /* ---------- Container ---------- */
+    .container{
+      width:100%;max-width:1100px;background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:20px;padding:26px;border:1px solid var(--glass-border);box-shadow:var(--shadow);backdrop-filter:blur(6px);
+    }
+
+    header{
+      display:flex;align-items:center;gap:16px;margin-bottom:18px;
+    }
+    .logo{
+      width:72px;height:72px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#f4d9a0);display:flex;align-items:center;justify-content:center;color:#083826;font-weight:700;font-size:20px;box-shadow:0 6px 18px rgba(0,0,0,0.35);
+    }
+    .title h1{margin:0;font-size:20px;color:var(--muted)}
+    .title p{margin:0;font-size:13px;opacity:0.9}
+
+    /* ---------- Hero ---------- */
+    .hero{display:flex;gap:20px;align-items:center;padding:18px;border-radius:14px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
+    .hero .left{flex:1}
+    .hero h2{margin:0;font-size:22px}
+    .hero p{margin:6px 0 0 0;color:rgba(233,245,239,0.9)}
+
+    /* CTA group */
+    .cta{display:flex;gap:10px;margin-top:12px}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;background:var(--glass);border:1px solid var(--glass-border);cursor:pointer;text-decoration:none;color:var(--muted);font-weight:600;font-size:14px;transition:all .22s ease;backdrop-filter:blur(4px);
+    }
+    .btn:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(2,10,8,0.4)}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#f0c76b);color:#083826}
+    .btn.ghost{background:transparent;border:1px dashed rgba(255,255,255,0.06)}
+
+    /* ---------- Menu grid (interactive buttons) ---------- */
+    .menu{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:18px
+    }
+    .card{
+      border-radius:14px;padding:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);cursor:pointer;transition:transform .18s ease, box-shadow .18s ease;position:relative;overflow:hidden;
+    }
+    .card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(2,10,8,0.45)}
+    .card .icon{width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:center;font-weight:700}
+    .card h3{margin:8px 0 0 0;font-size:16px}
+    .card p{margin:6px 0 0 0;font-size:13px;opacity:0.95}
+
+    /* ripple effect */
+    .ripple{position:absolute;transform:scale(0);border-radius:50%;pointer-events:none;background:rgba(255,255,255,0.08);animation:ripple .6s linear}
+    @keyframes ripple{to{transform:scale(4);opacity:0}}
+
+    /* floating WA */
+    .wa-floating{position:fixed;right:22px;bottom:22px;background:linear-gradient(135deg,#25D366,#128C7E);padding:12px;border-radius:999px;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.35);display:flex;align-items:center;gap:10px;text-decoration:none}
+
+    /* footer */
+    footer{margin-top:18px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.03);font-size:13px;opacity:0.9}
+
+    /* responsive */
+    @media(max-width:720px){body{padding:16px}.hero{flex-direction:column;align-items:flex-start}.logo{width:60px;height:60px}}
+  </style>
 </head>
 <body>
+  <div class="pattern" aria-hidden="true"></div>
 
-<header>
-    <h1>Pondok Pesantren Thawalib Tanjung Limau</h1>
-    <p>Website Aplikasi Resmi</p>
-</header>
+  <main class="container" role="main">
 
-<nav>
-    <a href="index.html">Beranda</a>
-    <a href="pages/akademik.html">Akademik</a>
-    <a href="pages/guru.html">Data Guru</a>
-    <a href="pages/asrama.html">Asrama</a>
-    <a href="pages/humas.html">HUMAS</a>
-    <a href="pages/ppdb.html">PPDB</a>
-    <a href="pages/kontak.html">Kontak</a>
-</nav>
+    <header>
+      <div class="logo">TT</div>
+      <div class="title">
+        <h1>Pondok Pesantren Thawalib Tanjung Limau</h1>
+        <p>Aplikasi Resmi • Informasi, Akademik, PPDB</p>
+      </div>
+      <div style="margin-left:auto;display:flex;gap:10px;align-items:center">
+        <a class="btn ghost" href="#about">Tentang</a>
+        <a class="btn primary" id="ppdbBtn" href="#ppdb">Daftar PPDB</a>
+      </div>
+    </header>
 
-<section class="hero">
-    <h2>Selamat Datang di Aplikasi Thawalib</h2>
-    <p>Informasi Pondok • Akademik • Asrama • PPDB • Humas</p>
-</section>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="left">
+        <h2 id="hero-title">Selamat Datang di Thawalib Tanjung Limau</h2>
+        <p>Tempat tumbuhnya akhlak, ilmu, dan bakat. Akses informasi pondok dengan cepat untuk santri, orang tua, dan guru.</p>
+        <div class="cta">
+          <a class="btn primary" href="#ppdb">PPDB 2026/2027</a>
+          <a class="btn" href="#akademik">Info Akademik</a>
+          <a class="btn" href="#kontak">Kontak</a>
+        </div>
+      </div>
+      <div class="right" style="min-width:220px;display:flex;align-items:center;justify-content:center">
+        <!-- decorative geometric SVG (Islamic motif) -->
+        <svg width="160" height="160" viewBox="0 0 100 100" aria-hidden="true">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1">
+              <stop offset="0" stop-color="#f7e7c7" stop-opacity="0.9" />
+              <stop offset="1" stop-color="#d6a34a" stop-opacity="0.95" />
+            </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="100" height="100" rx="12" fill="url(#g1)" opacity="0.12"></rect>
+          <g fill="none" stroke="#fff" stroke-opacity="0.14" stroke-width="1">
+            <path d="M50 10 L61 30 L82 30 L66 44 L72 66 L50 55 L28 66 L34 44 L18 30 L39 30 Z"/>
+          </g>
+        </svg>
+      </div>
+    </section>
 
-<section class="menu-grid">
-    <a href="pages/akademik.html" class="menu-item">Akademik</a>
-    <a href="pages/guru.html" class="menu-item">Data Guru</a>
-    <a href="pages/asrama.html" class="menu-item">Asrama</a>
-    <a href="pages/humas.html" class="menu-item">Humas</a>
-    <a href="pages/galeri.html" class="menu-item">Galeri</a>
-    <a href="pages/ppdb.html" class="menu-item">PPDB</a>
-</section>
+    <!-- ------- Interactive Menu Buttons ------- -->
+    <nav class="menu" aria-label="Menu Utama">
+      <div class="card" data-link="pages/akademik.html" tabindex="0">
+        <div class="icon">📚</div>
+        <h3>Akademik</h3>
+        <p>Jadwal, pengumuman ujian, dan materi.</p>
+      </div>
 
-<footer>
-    <p>© 2025 Pondok Pesantren Thawalib Tanjung Limau</p>
-</footer>
+      <div class="card" data-link="pages/guru.html" tabindex="0">
+        <div class="icon">👩‍🏫</div>
+        <h3>Data Guru & Staff</h3>
+        <p>Profil pengajar, kontak, dan jabatan.</p>
+      </div>
 
+      <div class="card" data-link="pages/asrama.html" tabindex="0">
+        <div class="icon">🏠</div>
+        <h3>Asrama</h3>
+        <p>Peraturan, jadwal piket, dan pembina.</p>
+      </div>
+
+      <div class="card" data-link="pages/galeri.html" tabindex="0">
+        <div class="icon">📸</div>
+        <h3>Galeri</h3>
+        <p>Foto & video kegiatan pondok.</p>
+      </div>
+
+      <div class="card" data-link="pages/ppdb.html" tabindex="0">
+        <div class="icon">🎓</div>
+        <h3>PPDB 2026/2027</h3>
+        <p>Daftar online & persyaratan pendaftaran.</p>
+      </div>
+
+      <div class="card" data-link="pages/kontak.html" tabindex="0">
+        <div class="icon">📞</div>
+        <h3>Kontak</h3>
+        <p>Alamat, WA resmi, dan peta lokasi.</p>
+      </div>
+    </nav>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+        <div>© 2025 Pondok Pesantren Thawalib Tanjung Limau</div>
+        <div style="opacity:0.95">Dibuat untuk memudahkan akses informasi pondok</div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Floating WA button -->
+  <a class="wa-floating" href="https://wa.me/6285245363764" target="_blank" rel="noopener noreferrer">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.5 3.5C18 1 14.8 1 12.5 1 6 1 1 6 1 12.5 1 15 1.9 17 3.2 18.6L1 23l4.6-2.2C7.5 22.3 9.9 23 12.5 23 19 23 24 18 24 11.5 24 9.2 24 6 20.5 3.5z" fill="#fff"/></svg>
+    Hubungi WA
+  </a>
+
+  <script>
+    // Card ripple + navigation
+    document.querySelectorAll('.card').forEach(card=>{
+      card.addEventListener('click', e=>{
+        makeRipple(e, card);
+        const href = card.getAttribute('data-link');
+        // small delay to show ripple
+        setTimeout(()=>{
+          if(href) window.location.href = href;
+        },200);
+      });
+      card.addEventListener('keydown', e=>{ if(e.key==='Enter') card.click(); });
+    });
+
+    function makeRipple(e, parent){
+      const rect = parent.getBoundingClientRect();
+      const ripple = document.createElement('span');
+      ripple.className='ripple';
+      const size = Math.max(rect.width, rect.height);
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+      ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+      parent.appendChild(ripple);
+      setTimeout(()=>ripple.remove(),600);
+    }
+
+    // PPDB button quick action
+    document.getElementById('ppdbBtn').addEventListener('click', function(e){
+      e.preventDefault();
+      // show a simple built-in prompt modal
+      const r = confirm('PPDB 2026/2027: Buka formulir pendaftaran sekarang? (akan membuka halaman PPDB)');
+      if(r){ window.location.href = 'pages/ppdb.html'; }
+    });
+
+    // Accessibility: focus style
+    document.addEventListener('keyup', function(e){
+      if(e.key==='Tab') document.body.classList.add('show-focus');
+    });
+  </script>
 </body>
 </html>
-
