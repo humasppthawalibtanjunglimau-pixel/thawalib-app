@@ -1,237 +1,390 @@
 <!doctype html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Pondok Pesantren Thawalib Tanjung Limau</title>
-  <meta name="description" content="Aplikasi web Thawalib — Beranda">
+
+  <!-- Font (Google Fonts) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    /* ---------- Colors & Theme (Islami) ---------- */
     :root{
-      --bg-1:#0b3b2e; /* dark teal */
-      --bg-2:#145c4b; /* teal */
-      --accent:#d6a34a; /* gold */
-      --muted:#e9f5ef; /* light */
-      --card:#ffffff11; /* translucent */
-      --glass:#ffffff08;
-      --glass-2:#ffffff12;
-      --shadow: 0 8px 20px rgba(2,10,8,0.45);
-      --glass-border: rgba(255,255,255,0.06);
-      --radius:16px;
+      --bg-1: #0f5132;   /* dark green */
+      --bg-2: #065f46;   /* medium green */
+      --accent: #f8e9d6; /* warm cream */
+      --card: rgba(255,255,255,0.06);
+      --glass: rgba(255,255,255,0.06);
+      --glass-2: rgba(255,255,255,0.03);
+      --muted: rgba(255,255,255,0.8);
+      --shadow: 0 6px 18px rgba(2,6,23,0.45);
+      --radius: 14px;
     }
 
-    /* ---------- Base ---------- */
+    /* Page reset */
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      margin:0;
+      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
       color:var(--muted);
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,0.02), transparent), linear-gradient(180deg,var(--bg-1),var(--bg-2));
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
-      padding:28px;
-      display:flex;align-items:flex-start;justify-content:center;
+      background: linear-gradient(160deg,var(--bg-1) 0%, var(--bg-2) 60%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
     }
 
-    /* Islamic geometric pattern (subtle) */
-    .pattern{
-      position:fixed;inset:0;pointer-events:none;mix-blend-mode:overlay;opacity:0.12;background-image:radial-gradient(circle at 20% 20%, rgba(255,255,255,0.02), transparent 6%),
-        repeating-linear-gradient(45deg, rgba(255,255,255,0.01) 0 2px, transparent 2px 8px),
-        linear-gradient(90deg, rgba(255,255,255,0.01), transparent);
-      mask-image:linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.1));
+    /* Islamic geometric subtle pattern using SVG background */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image:
+        radial-gradient(rgba(255,255,255,0.02) 0.5px, transparent 0.5px),
+        linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+      background-size: 20px 20px, 100% 100%;
+      mix-blend-mode:overlay;
+      pointer-events:none;
+      z-index:0;
     }
 
-    /* ---------- Container ---------- */
     .container{
-      width:100%;max-width:1100px;background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:20px;padding:26px;border:1px solid var(--glass-border);box-shadow:var(--shadow);backdrop-filter:blur(6px);
+      width:100%;
+      max-width:1000px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius:20px;
+      padding:28px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+      z-index:1;
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    /* Decorative mosque-like silhouette on top-right */
+    .decor{
+      position:absolute;
+      right:-80px;
+      top:-60px;
+      width:420px;
+      height:420px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.03), transparent 30%),
+                  conic-gradient(from 120deg at 50% 50%, rgba(255,255,255,0.02), transparent 40%);
+      transform: rotate(18deg);
+      filter: blur(18px);
+      opacity:0.6;
+      pointer-events:none;
     }
 
     header{
-      display:flex;align-items:center;gap:16px;margin-bottom:18px;
+      display:flex;
+      gap:16px;
+      align-items:center;
+      margin-bottom:18px;
     }
-    .logo{
-      width:72px;height:72px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#f4d9a0);display:flex;align-items:center;justify-content:center;color:#083826;font-weight:700;font-size:20px;box-shadow:0 6px 18px rgba(0,0,0,0.35);
+    .brand{
+      width:68px;
+      height:68px;
+      border-radius:12px;
+      background: linear-gradient(135deg,#fff0 0%, rgba(255,255,255,0.04) 50%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid rgba(255,255,255,0.06);
+      flex-shrink:0;
     }
-    .title h1{margin:0;font-size:20px;color:var(--muted)}
-    .title p{margin:0;font-size:13px;opacity:0.9}
+    /* simple mosque icon */
+    .brand svg{width:44px;height:44px;fill:var(--accent);filter:drop-shadow(0 2px 6px rgba(0,0,0,0.4))}
 
-    /* ---------- Hero ---------- */
-    .hero{display:flex;gap:20px;align-items:center;padding:18px;border-radius:14px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
-    .hero .left{flex:1}
-    .hero h2{margin:0;font-size:22px}
-    .hero p{margin:6px 0 0 0;color:rgba(233,245,239,0.9)}
+    h1{
+      margin:0;
+      font-size:20px;
+      line-height:1.05;
+      color:var(--accent);
+      letter-spacing:0.2px;
+    }
+    p.lead{
+      margin:0;
+      font-size:13px;
+      color:rgba(255,255,255,0.75);
+      margin-top:4px;
+    }
 
-    /* CTA group */
-    .cta{display:flex;gap:10px;margin-top:12px}
-    .btn{
-      display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;background:var(--glass);border:1px solid var(--glass-border);cursor:pointer;text-decoration:none;color:var(--muted);font-weight:600;font-size:14px;transition:all .22s ease;backdrop-filter:blur(4px);
+    /* Buttons grid */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:14px;
+      margin-top:18px;
     }
-    .btn:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(2,10,8,0.4)}
-    .btn.primary{background:linear-gradient(90deg,var(--accent),#f0c76b);color:#083826}
-    .btn.ghost{background:transparent;border:1px dashed rgba(255,255,255,0.06)}
 
-    /* ---------- Menu grid (interactive buttons) ---------- */
-    .menu{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:18px
+    @media (max-width:880px){
+      .grid{grid-template-columns: repeat(2,1fr)}
     }
-    .card{
-      border-radius:14px;padding:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);cursor:pointer;transition:transform .18s ease, box-shadow .18s ease;position:relative;overflow:hidden;
+    @media (max-width:420px){
+      .grid{grid-template-columns:1fr}
     }
-    .card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(2,10,8,0.45)}
-    .card .icon{width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:center;font-weight:700}
-    .card h3{margin:8px 0 0 0;font-size:16px}
-    .card p{margin:6px 0 0 0;font-size:13px;opacity:0.95}
+
+    .card-btn{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;
+      padding:14px;
+      display:flex;
+      gap:12px;
+      align-items:center;
+      border: 1px solid rgba(255,255,255,0.04);
+      cursor:pointer;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+      position:relative;
+      overflow:hidden;
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .card-btn:hover{
+      transform: translateY(-6px);
+      box-shadow: 0 10px 30px rgba(2,6,23,0.55);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    }
+
+    .card-btn:active{ transform: translateY(-2px) scale(.995) }
+
+    .icon-wrap{
+      width:46px;height:46px;border-radius:10px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      display:flex;align-items:center;justify-content:center;
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 6px 14px rgba(2,6,23,0.35);
+      flex-shrink:0;
+    }
+    .icon-wrap svg{width:24px;height:24px;fill:var(--accent)}
+
+    .btn-content{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+    }
+    .btn-title{
+      font-weight:600;
+      font-size:15px;
+      color:var(--accent);
+      margin-bottom:4px;
+    }
+    .btn-sub{
+      font-size:12px;
+      color:rgba(255,255,255,0.78);
+      line-height:1.2;
+    }
+
+    /* small badge on right */
+    .badge{
+      background:rgba(255,255,255,0.06);
+      color:var(--accent);
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:12px;
+      border:1px solid rgba(255,255,255,0.03);
+    }
 
     /* ripple effect */
-    .ripple{position:absolute;transform:scale(0);border-radius:50%;pointer-events:none;background:rgba(255,255,255,0.08);animation:ripple .6s linear}
-    @keyframes ripple{to{transform:scale(4);opacity:0}}
+    .ripple {
+      position:absolute;
+      border-radius:50%;
+      transform:scale(0);
+      animation:ripple .6s linear;
+      background: linear-gradient(90deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06));
+      pointer-events:none;
+      mix-blend-mode:screen;
+    }
+    @keyframes ripple{
+      to{transform:scale(3); opacity:0}
+    }
 
-    /* floating WA */
-    .wa-floating{position:fixed;right:22px;bottom:22px;background:linear-gradient(135deg,#25D366,#128C7E);padding:12px;border-radius:999px;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.35);display:flex;align-items:center;gap:10px;text-decoration:none}
+    /* footer small */
+    .foot{
+      margin-top:18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    .small{
+      font-size:12px;color:rgba(255,255,255,0.65)
+    }
 
-    /* footer */
-    footer{margin-top:18px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.03);font-size:13px;opacity:0.9}
+    /* subtle entrance */
+    .card-btn{opacity:0; transform: translateY(12px); animation:enter .6s forwards}
+    .card-btn:nth-child(1){animation-delay:.08s}
+    .card-btn:nth-child(2){animation-delay:.12s}
+    .card-btn:nth-child(3){animation-delay:.16s}
+    .card-btn:nth-child(4){animation-delay:.20s}
+    .card-btn:nth-child(5){animation-delay:.24s}
+    .card-btn:nth-child(6){animation-delay:.28s}
+    .card-btn:nth-child(7){animation-delay:.32s}
+    .card-btn:nth-child(8){animation-delay:.36s}
+    @keyframes enter{
+      to{opacity:1; transform:translateY(0)}
+    }
 
-    /* responsive */
-    @media(max-width:720px){body{padding:16px}.hero{flex-direction:column;align-items:flex-start}.logo{width:60px;height:60px}}
+    /* focus styles for accessibility */
+    .card-btn:focus{outline:3px solid rgba(255,255,255,0.06); outline-offset:3px}
   </style>
 </head>
 <body>
-  <div class="pattern" aria-hidden="true"></div>
-
-  <main class="container" role="main">
+  <div class="container" role="main" aria-labelledby="main-title">
+    <div class="decor" aria-hidden="true"></div>
 
     <header>
-      <div class="logo">TT</div>
-      <div class="title">
-        <h1>Pondok Pesantren Thawalib Tanjung Limau</h1>
-        <p>Aplikasi Resmi • Informasi, Akademik, PPDB</p>
+      <div class="brand" aria-hidden="true">
+        <!-- mosque icon -->
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 6c3.3 0 6 2.7 6 6v2h9a2 2 0 0 1 2 2v7h-4v18H15V23H11v-7a2 2 0 0 1 2-2h9V12c0-3.3 2.7-6 6-6zM20 28h24v10H20V28z"/>
+        </svg>
       </div>
-      <div style="margin-left:auto;display:flex;gap:10px;align-items:center">
-        <a class="btn ghost" href="#about">Tentang</a>
-        <a class="btn primary" id="ppdbBtn" href="#ppdb">Daftar PPDB</a>
+
+      <div>
+        <h1 id="main-title">Pondok Pesantren Thawalib Tanjung Limau</h1>
+        <p class="lead">Aplikasi Informasi — Beranda • Akademik • PPDB • Galeri • HUMAS</p>
+      </div>
+      <div style="margin-left:auto;display:flex;gap:8px;align-items:center">
+        <div class="badge">Aplikasi Web • Siap Pakai</div>
       </div>
     </header>
 
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="left">
-        <h2 id="hero-title">Selamat Datang di Thawalib Tanjung Limau</h2>
-        <p>Tempat tumbuhnya akhlak, ilmu, dan bakat. Akses informasi pondok dengan cepat untuk santri, orang tua, dan guru.</p>
-        <div class="cta">
-          <a class="btn primary" href="#ppdb">PPDB 2026/2027</a>
-          <a class="btn" href="#akademik">Info Akademik</a>
-          <a class="btn" href="#kontak">Kontak</a>
-        </div>
-      </div>
-      <div class="right" style="min-width:220px;display:flex;align-items:center;justify-content:center">
-        <!-- decorative geometric SVG (Islamic motif) -->
-        <svg width="160" height="160" viewBox="0 0 100 100" aria-hidden="true">
-          <defs>
-            <linearGradient id="g1" x1="0" x2="1">
-              <stop offset="0" stop-color="#f7e7c7" stop-opacity="0.9" />
-              <stop offset="1" stop-color="#d6a34a" stop-opacity="0.95" />
-            </linearGradient>
-          </defs>
-          <rect x="0" y="0" width="100" height="100" rx="12" fill="url(#g1)" opacity="0.12"></rect>
-          <g fill="none" stroke="#fff" stroke-opacity="0.14" stroke-width="1">
-            <path d="M50 10 L61 30 L82 30 L66 44 L72 66 L50 55 L28 66 L34 44 L18 30 L39 30 Z"/>
-          </g>
-        </svg>
-      </div>
-    </section>
+    <main>
+      <section class="grid" aria-label="Menu Utama">
+        <!-- 1: img/readme.md -->
+        <a class="card-btn" href="img/readme.md" data-label="img" role="button">
+          <span class="icon-wrap" aria-hidden="true">
+            <!-- photo icon -->
+            <svg viewBox="0 0 24 24"><path d="M21 5H3c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-9 12c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5z"/></svg>
+          </span>
+          <div class="btn-content">
+            <div class="btn-title">Img</div>
+            <div class="btn-sub">Folder foto & aset visual</div>
+          </div>
+          <div class="badge">Buka</div>
+        </a>
 
-    <!-- ------- Interactive Menu Buttons ------- -->
-    <nav class="menu" aria-label="Menu Utama">
-      <div class="card" data-link="pages/akademik.html" tabindex="0">
-        <div class="icon">📚</div>
-        <h3>Akademik</h3>
-        <p>Jadwal, pengumuman ujian, dan materi.</p>
+        <!-- 2: data/readme.md -->
+        <a class="card-btn" href="data/readme.md" data-label="data" role="button">
+          <span class="icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zM3 5v2h2V5H3zm4 8h14v-2H7v2zm0 4h14v-2H7v2zM7 5v2h14V5H7z"/></svg>
+          </span>
+          <div class="btn-content">
+            <div class="btn-title">Data</div>
+            <div class="btn-sub">Data santri, jadwal & dokumen</div>
+          </div>
+          <div class="badge">Buka</div>
+        </a>
+
+        <!-- 3: pages/readme.md -->
+        <a class="card-btn" href="pages/readme.md" data-label="pages" role="button">
+          <span class="icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M3 4v16h18V8l-6-4H3zm2 2h9v4H5V6zm0 6h14v6H5v-6z"/></svg>
+          </span>
+          <div class="btn-content">
+            <div class="btn-title">Pages</div>
+            <div class="btn-sub">Halaman informasi & artikel</div>
+          </div>
+          <div class="badge">Buka</div>
+        </a>
+
+        <!-- 4: ppdb/readme.md -->
+        <a class="card-btn" href="ppdb/readme.md" data-label="ppdb" role="button">
+          <span class="icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M12 2l4 4h-3v6h-2V6H8l4-4zM6 8v14h12V8H6z"/></svg>
+          </span>
+          <div class="btn-content">
+            <div class="btn-title">PPDB</div>
+            <div class="btn-sub">Pendaftaran Siswa Baru 2026/2027</div>
+          </div>
+          <div class="badge">Info</div>
+        </a>
+
+        <!-- 5: guru/readme.md -->
+        <a class="card-btn" href="guru/readme.md" data-label="guru" role="button">
+          <span class="icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/></svg>
+          </span>
+          <div class="btn-content">
+            <div class="btn-title">Guru</div>
+            <div class="btn-sub">Profil & data tenaga pengajar</div>
+          </div>
+          <div class="badge">Lihat</div>
+        </a>
+
+        <!-- 6: asrama/readme.md -->
+        <a class="card-btn" href="asrama/readme.md" data-label="asrama" role="button">
+          <span class="icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M12 3l8 5v11a1 1 0 0 1-1 1h-5v-7H10v7H5a1 1 0 0 1-1-1V8l8-5z"/></svg>
+          </span>
+          <div class="btn-content">
+            <div class="btn-title">Asrama</div>
+            <div class="btn-sub">Info asrama, aturan & jadwal piket</div>
+          </div>
+          <div class="badge">Lihat</div>
+        </a>
+
+        <!-- 7: humas/readme.md -->
+        <a class="card-btn" href="humas/readme.md" data-label="humas" role="button">
+          <span class="icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16v12H4zM2 20h20v2H2z"/></svg>
+          </span>
+          <div class="btn-content">
+            <div class="btn-title">HUMAS</div>
+            <div class="btn-sub">Publikasi & berita pondok</div>
+          </div>
+          <div class="badge">Buka</div>
+        </a>
+
+        <!-- 8: galeri/readme.md -->
+        <a class="card-btn" href="galeri/readme.md" data-label="galeri" role="button">
+          <span class="icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14l4-3 3 3 5-4 5 4z"/></svg>
+          </span>
+          <div class="btn-content">
+            <div class="btn-title">Galeri</div>
+            <div class="btn-sub">Foto & video kegiatan pondok</div>
+          </div>
+          <div class="badge">Buka</div>
+        </a>
+      </section>
+
+      <div class="foot">
+        <div class="small">© 2025 Pondok Pesantren Thawalib Tanjung Limau</div>
+        <div class="small">Kontak: WA • Instagram • YouTube</div>
       </div>
-
-      <div class="card" data-link="pages/guru.html" tabindex="0">
-        <div class="icon">👩‍🏫</div>
-        <h3>Data Guru & Staff</h3>
-        <p>Profil pengajar, kontak, dan jabatan.</p>
-      </div>
-
-      <div class="card" data-link="pages/asrama.html" tabindex="0">
-        <div class="icon">🏠</div>
-        <h3>Asrama</h3>
-        <p>Peraturan, jadwal piket, dan pembina.</p>
-      </div>
-
-      <div class="card" data-link="pages/galeri.html" tabindex="0">
-        <div class="icon">📸</div>
-        <h3>Galeri</h3>
-        <p>Foto & video kegiatan pondok.</p>
-      </div>
-
-      <div class="card" data-link="pages/ppdb.html" tabindex="0">
-        <div class="icon">🎓</div>
-        <h3>PPDB 2026/2027</h3>
-        <p>Daftar online & persyaratan pendaftaran.</p>
-      </div>
-
-      <div class="card" data-link="pages/kontak.html" tabindex="0">
-        <div class="icon">📞</div>
-        <h3>Kontak</h3>
-        <p>Alamat, WA resmi, dan peta lokasi.</p>
-      </div>
-    </nav>
-
-    <footer>
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
-        <div>© 2025 Pondok Pesantren Thawalib Tanjung Limau</div>
-        <div style="opacity:0.95">Dibuat untuk memudahkan akses informasi pondok</div>
-      </div>
-    </footer>
-
-  </main>
-
-  <!-- Floating WA button -->
-  <a class="wa-floating" href="https://wa.me/6285245363764" target="_blank" rel="noopener noreferrer">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.5 3.5C18 1 14.8 1 12.5 1 6 1 1 6 1 12.5 1 15 1.9 17 3.2 18.6L1 23l4.6-2.2C7.5 22.3 9.9 23 12.5 23 19 23 24 18 24 11.5 24 9.2 24 6 20.5 3.5z" fill="#fff"/></svg>
-    Hubungi WA
-  </a>
+    </main>
+  </div>
 
   <script>
-    // Card ripple + navigation
-    document.querySelectorAll('.card').forEach(card=>{
-      card.addEventListener('click', e=>{
-        makeRipple(e, card);
-        const href = card.getAttribute('data-link');
-        // small delay to show ripple
-        setTimeout(()=>{
-          if(href) window.location.href = href;
-        },200);
+    // ripple click effect on cards
+    document.querySelectorAll('.card-btn').forEach(btn=>{
+      btn.addEventListener('click', function(e){
+        const rect = this.getBoundingClientRect();
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple';
+        const size = Math.max(rect.width, rect.height)*1.2;
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+        ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+        this.appendChild(ripple);
+        // remove after animation
+        setTimeout(()=> ripple.remove(), 700);
+        // allow normal navigation to href - no prevention
       });
-      card.addEventListener('keydown', e=>{ if(e.key==='Enter') card.click(); });
-    });
-
-    function makeRipple(e, parent){
-      const rect = parent.getBoundingClientRect();
-      const ripple = document.createElement('span');
-      ripple.className='ripple';
-      const size = Math.max(rect.width, rect.height);
-      ripple.style.width = ripple.style.height = size + 'px';
-      ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
-      ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
-      parent.appendChild(ripple);
-      setTimeout(()=>ripple.remove(),600);
-    }
-
-    // PPDB button quick action
-    document.getElementById('ppdbBtn').addEventListener('click', function(e){
-      e.preventDefault();
-      // show a simple built-in prompt modal
-      const r = confirm('PPDB 2026/2027: Buka formulir pendaftaran sekarang? (akan membuka halaman PPDB)');
-      if(r){ window.location.href = 'pages/ppdb.html'; }
-    });
-
-    // Accessibility: focus style
-    document.addEventListener('keyup', function(e){
-      if(e.key==='Tab') document.body.classList.add('show-focus');
+      // keyboard accessibility: Enter triggers click
+      btn.addEventListener('keydown', (ev)=>{
+        if(ev.key === 'Enter' || ev.key === ' '){
+          ev.preventDefault();
+          btn.click();
+        }
+      });
     });
   </script>
 </body>
