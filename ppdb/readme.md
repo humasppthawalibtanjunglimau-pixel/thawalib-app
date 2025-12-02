@@ -1,1 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PPDB 2026–2027 - Pondok Pesantren Thawalib Tanjung Limau</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #0a3b2e, #0f7049, #0d5335);
+        color: #fff;
+        min-height: 100vh;
+    }
+
+    header {
+        text-align: center;
+        padding: 40px 20px 20px;
+    }
+
+    header img {
+        width: 110px;
+        margin-bottom: 10px;
+        filter: drop-shadow(0 0 8px rgba(0,0,0,0.4));
+    }
+
+    h1 {
+        font-size: 32px;
+        color: #f6d36b;
+        margin: 10px 0 5px;
+        font-weight: bold;
+    }
+
+    .sub {
+        color: #f0f0f0;
+        font-size: 15px;
+        margin-top: 3px;
+    }
+
+    .container {
+        margin: 20px;
+        padding: 20px;
+        background: rgba(255,255,255,0.08);
+        border-radius: 18px;
+        backdrop-filter: blur(6px);
+        box-shadow: 0 0 14px rgba(0,0,0,0.25);
+    }
+
+    h2 {
+        color: #f7de84;
+        margin-bottom: 12px;
+        font-size: 24px;
+        text-shadow: 0 0 8px rgba(0,0,0,0.3);
+    }
+
+    p, li {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    ul {
+        margin-top: 10px;
+        padding-left: 20px;
+    }
+
+    .btn-daftar {
+        display: block;
+        width: 200px;
+        margin: 25px auto;
+        padding: 14px;
+        text-align: center;
+        background: #f6d36b;
+        color: #0b3b2e;
+        font-weight: bold;
+        border-radius: 12px;
+        text-decoration: none;
+        font-size: 16px;
+        transition: .25s;
+    }
+
+    .btn-daftar:hover {
+        background: #ffe9b3;
+        transform: scale(1.05);
+    }
+
+    .kontak-box {
+        margin-top: 20px;
+        padding: 15px;
+        background: rgba(255,255,255,0.12);
+        border-radius: 14px;
+    }
+
+    .btn-back {
+        display: block;
+        width: 160px;
+        margin: 35px auto 20px;
+        padding: 12px;
+        text-align: center;
+        background: #f6d36b;
+        color: #0b3b2e;
+        border-radius: 10px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: .25s;
+    }
+
+    .btn-back:hover {
+        background: #ffeab6;
+        transform: scale(1.05);
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <img src="../img/logo-thawalib.png" alt="Logo Thawalib">
+    <h1>PPDB 2026–2027</h1>
+    <div class="sub">Pondok Pesantren Thawalib Tanjung Limau</div>
+</header>
+
+<div class="container">
+    <h2>Pendaftaran Santri Baru Telah Dibuka!</h2>
+    <p>
+        Pondok Pesantren <b>Thawalib Tanjung Limau</b> membuka pendaftaran santri baru
+        untuk Tahun Pelajaran <b>2026–2027</b>.  
+        Bergabunglah dalam lingkungan pendidikan Islam yang berfokus pada akhlak,
+        kedisiplinan, tahfiz, kajian kitab, serta pendidikan formal MTs & MA.
+    </p>
+
+    <a class="btn-daftar" href="https://wa.me/085274042328" target="_blank">📩 Daftar Sekarang</a>
+
+    <h2>Syarat Pendaftaran</h2>
+    <ul>
+        <li>Mengisi formulir pendaftaran</li>
+        <li>Fotokopi Akta Kelahiran</li>
+        <li>Fotokopi Kartu Keluarga</li>
+        <li>Pas foto terbaru</li>
+        <li>Nilai rapor (semester terakhir)</li>
+    </ul>
+
+    <h2>Alur Pendaftaran</h2>
+    <ul>
+        <li>1️⃣ Calon santri / orang tua menghubungi panitia PPDB</li>
+        <li>2️⃣ Mengisi formulir pendaftaran</li>
+        <li>3️⃣ Mengumpulkan berkas persyaratan</li>
+        <li>4️⃣ Mengikuti tes baca Qur'an & wawancara</li>
+        <li>5️⃣ Pengumuman hasil diterima</li>
+        <li>6️⃣ Registrasi ulang</li>
+    </ul>
+
+    <h2>Program Unggulan</h2>
+    <ul>
+        <li>📘 Tahfiz Al-Qur'an</li>
+        <li>📚 Kajian Kitab Kuning</li>
+        <li>🏫 Pendidikan Formal MTs & MA</li>
+        <li>🕌 Pembinaan Ibadah & Akhlak</li>
+        <li>🎙️ Pengembangan Bakat & Leadership</li>
+        <li>🏠 Pembinaan Asrama Terencana</li>
+    </ul>
+
+    <div class="kontak-box">
+        <h2>Kontak Panitia PPDB</h2>
+        <p>📞 WhatsApp: <a href="https://wa.me/085274042328" style="color:#f7de84;">0852-7404-2328</a></p>
+        <p>📸 Instagram: kabathawalibtanjunglimau</p>
+        <p>🎥 TikTok: humasthawalibtjlimau</p>
+        <p>📘 Facebook: kaba.thawalib</p>
+        <p>▶ YouTube: Studio Thawalib</p>
+    </div>
+</div>
+
+<a class="btn-back" href="../index.html">⬅ Kembali ke Beranda</a>
+
+</body>
+</html>
 
